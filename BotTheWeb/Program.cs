@@ -19,9 +19,18 @@ namespace BotTheWeb
             chromeDriver.Navigate().GoToUrl("https://www.google.com");
 
             chromeDriver.FindElementByXPath("//*[@id=\"lst-ib\"]").Click();
-            chromeDriver.Keyboard.SendKeys("books");
-            chromeDriver.Keyboard.SendKeys(Keys.Enter);
+            chromeDriver.Keyboard.SendKeys("Books");
+            chromeDriver.Keyboard.SendKeys(Keys.Enter);//browser takes to new page
+
+            chromeDriver.FindElementByXPath("//*[@id=\"hdtb-msb-vis\"]/div[3]/a").Click();
+            
+            var items = chromeDriver.FindElementsByXPath("//*[@id=\"rso\"]/div[1]/div/div[*]/div/div[2]/div/div[1]/a");//list of books
+            Console.WriteLine(items.Count);//count of searched items
+
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Text);
+            }
         }
-        
     }
 }
